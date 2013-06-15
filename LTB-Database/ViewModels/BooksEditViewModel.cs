@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 
 using LTB_Database.Repository;
+using LTB_Database.Core.DataModel;
 
 namespace LTB_Database.ViewModels
 {
@@ -15,13 +16,13 @@ namespace LTB_Database.ViewModels
 			set;
 		}
 		
-		public List<Story> Stories
+		public Story[] Stories
 		{
 			get;
 			set;
 		}
 		
-		public List<Category> Categories
+		public Category[] Categories
 		{
 			get;
 			set;

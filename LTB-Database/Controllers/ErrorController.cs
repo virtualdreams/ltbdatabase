@@ -13,29 +13,16 @@ namespace LTB_Database.Controllers
 {
 	public class ErrorController : Controller
 	{
-		public ActionResult Index (Exception ex)
+		public ActionResult Index ()
 		{
-			Response.StatusCode = 500;
-			var view = new ErrorModel { Error = ex.Message };
+			string messsage = "Unknown error";
 			
-			if(ex is SqlDataMapperException)
-			{
-				if(Request.IsAjaxRequest())
-				{
-					return new EmptyResult();
-				}
-			}
-			if(ex is DbException)
-			{
-				if(Request.IsAjaxRequest())
-				{
-					return new EmptyResult();
-				}
-			}
+			var view = new ErrorModel { Error = messsage };
+			
 			return View(view);
 		}
 		
-		public ActionResult Http404 (Exception ex)
+		public ActionResult Http404()
 		{
 			Response.StatusCode = 404;
 			var view = new ErrorModel { Error = "Die Ressource '" + HttpContext.Request.Url.ToString() + "' konnte nicht gefunden werden." };
@@ -46,10 +33,10 @@ namespace LTB_Database.Controllers
 			return View(view);
 		}
 
-		public ActionResult Http500(Exception ex)
+		public ActionResult Http500()
 		{
 			Response.StatusCode = 500;
-			var view = new ErrorModel { Error = "Entschuldigung, aber ein interner Fehler ist aufgetreten. Das hätte nicht passieren dürfen. Bitte versuchen Sie es nocheinaml. Sollte der Fehler weiterhin auftreten, kontaktieren Sie bitte den zuständigen Administrator." };
+			var view = new ErrorModel { Error = "Entschuldigung, aber ein interner Fehler ist aufgetreten. Das hätte nicht passieren dürfen. Bitte versuchen Sie es nocheinmal. Sollte der Fehler weiterhin auftreten, kontaktieren Sie bitte den zuständigen Administrator." };
 			
 			if(Request.IsAjaxRequest())
 				return new EmptyResult();

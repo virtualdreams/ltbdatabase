@@ -8,10 +8,12 @@ using System.Diagnostics;
 using LTB_Database.Models;
 using LTB_Database.ViewModels;
 using LTB_Database.Repository;
-
+using LTB_Database.Filters;
 
 namespace LTB_Database.Controllers
 {
+	[GlobalExceptionFilter]
+	[GlobalActionFilter]
     public class SearchController : Controller
     {
 		private LtbRepository repo = new LtbRepository();

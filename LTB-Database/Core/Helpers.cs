@@ -23,6 +23,11 @@ namespace System.Web.Mvc
 		{
 			return Convert.FromBase64String(input);
 		}
+		
+		public static string EscapeSpecialCharacters(string value)
+		{
+			return value.Replace("\\", "\\\\").Replace("'", "\\'").Replace("\"", "\\\"");
+		}
 	}
 }
 

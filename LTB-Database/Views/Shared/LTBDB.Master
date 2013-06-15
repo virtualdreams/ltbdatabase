@@ -6,6 +6,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta http-equiv="Language" content="de" />
+    <meta name="keywords" content="Lustiges Taschenbuch, LTB, Comic" />
     
     <script type="text/javascript" src="<%= Url.Content("~/Scripts/jquery-1.6.1.min.js") %>"></script>
     <script type="text/javascript" src="<%= Url.Content("~/Scripts/fancybox/jquery.fancybox-1.3.4.pack.js") %>"></script>
@@ -36,11 +38,7 @@
     		
     		$("#search-query").autocomplete({
     			source: "/AutoComplete",
-    			minLength: 3,
-				select: function(event, ui) {
-					$("#search-query").val(ui.item.value);
-					$("#search-form").submit();
-				} 
+    			minLength: 3
     		}); 
     	});
     </script>

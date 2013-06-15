@@ -1,0 +1,758 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SqlDataMapper</name>
+    </assembly>
+    <members>
+        <member name="T:SqlDataMapper.SqlProvider">
+            <summary>
+            The default sql provider.
+            </summary>
+        </member>
+        <member name="T:SqlDataMapper.ISqlProvider">
+            <summary>
+            Generic interface for sql provider
+            </summary>
+        </member>
+        <member name="M:SqlDataMapper.ISqlProvider.Open">
+            <summary>
+            Must provide open functionality
+            </summary>
+        </member>
+        <member name="M:SqlDataMapper.ISqlProvider.Close">
+            <summary>
+            Must provide close functionality
+            </summary>
+        </member>
+        <member name="M:SqlDataMapper.ISqlProvider.BeginTransaction">
+            <summary>
+            Must provide begin transaction functionality
+            </summary>
+        </member>
+        <member name="M:SqlDataMapper.ISqlProvider.CommitTransaction">
+            <summary>
+            Must provide commit transaction functionality
+            </summary>
+        </member>
+        <member name="M:SqlDataMapper.ISqlProvider.RollbackTransaction">
+            <summary>
+            Must provide rollback transaction functionality
+            </summary>
+        </member>
+        <member name="M:SqlDataMapper.ISqlProvider.Select``1(System.String)">
+            <summary>
+            Must provide select object functionality
+            </summary>
+        </member>
+        <member name="M:SqlDataMapper.ISqlProvider.SelectList``1(System.String)">
+            <summary>
+            Must provide select list functionality
+            </summary>
+        </member>
+        <member name="M:SqlDataMapper.ISqlProvider.SelectScalar``1(System.String)">
+            <summary>
+            Must provide select scalar functionality
+            </summary>
+        </member>
+        <member name="M:SqlDataMapper.ISqlProvider.Insert(System.String)">
+            <summary>
+            Must provide insert functionality
+            </summary>
+        </member>
+        <member name="M:SqlDataMapper.ISqlProvider.Update(System.String)">
+            <summary>
+            Must provide update functionality
+            </summary>
+        </member>
+        <member name="M:SqlDataMapper.ISqlProvider.Delete(System.String)">
+            <summary>
+            Must provide delete functionality
+            </summary>
+        </member>
+        <member name="M:SqlDataMapper.SqlProvider.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Create a new sql connection class. The assembly would automatic loaded if possible.
+            </summary>
+            <param name="assemblyName">The assembly name, i.e. <c>MySql.Data</c></param>
+            <param name="connectionClass">The connection class, i.e. <c>MySql.Data.MySqlClient.MySqlConnection</c></param>
+            <param name="connectionString">The connection string to the database, i.e. <c>Server=hostname;Database=dbname;Uid=user;Pwd=password;Pooling=true</c></param>
+        </member>
+        <member name="M:SqlDataMapper.SqlProvider.Open">
+            <summary>
+            Opens a connection to the database
+            </summary>
+            <remarks>
+            If a connection already exits, the connection was closed before.
+            </remarks>
+        </member>
+        <member name="M:SqlDataMapper.SqlProvider.Close">
+            <summary>
+            Close the connection to the database
+            </summary>
+        </member>
+        <member name="M:SqlDataMapper.SqlProvider.BeginTransaction">
+            <summary>
+            Begins a database transaction
+            </summary>
+        </member>
+        <member name="M:SqlDataMapper.SqlProvider.CommitTransaction">
+            <summary>
+            Commits the database transaction.
+            </summary>
+        </member>
+        <member name="M:SqlDataMapper.SqlProvider.RollbackTransaction">
+            <summary>
+            Rolls back a transaction from a pending state.
+            </summary>
+        </member>
+        <member name="M:SqlDataMapper.SqlProvider.Escape(System.String)">
+            <summary>
+            Escape special chars
+            </summary>
+        </member>
+        <member name="M:SqlDataMapper.SqlProvider.Select``1(System.String)">
+            <summary>
+            Select a single object from the database.
+            </summary>
+        </member>
+        <member name="M:SqlDataMapper.SqlProvider.SelectList``1(System.String)">
+            <summary>
+            Selects a list of objects from the database.
+            </summary>
+        </member>
+        <member name="M:SqlDataMapper.SqlProvider.SelectScalar``1(System.String)">
+            <summary>
+            Selects the first row and the first column in resultset.
+            </summary>
+        </member>
+        <member name="M:SqlDataMapper.SqlProvider.Insert(System.String)">
+            <summary>
+            Insert
+            </summary>
+        </member>
+        <member name="M:SqlDataMapper.SqlProvider.Update(System.String)">
+            <summary>
+            Update
+            </summary>
+        </member>
+        <member name="M:SqlDataMapper.SqlProvider.Delete(System.String)">
+            <summary>
+            Delete
+            </summary>
+        </member>
+        <member name="T:SqlDataMapper.SqlParameter">
+            <summary>
+            A simple class to provide parameter for sql statements.
+            </summary>
+        </member>
+        <member name="M:SqlDataMapper.SqlParameter.#ctor">
+            <summary>
+            Default constructor creates an empty parameter object
+            </summary>
+        </member>
+        <member name="M:SqlDataMapper.SqlParameter.#ctor(System.String,System.Object)">
+            <summary>
+            Constructor for adding a single parameter at creation.
+            </summary>
+            <param name="key">A unique key</param>
+            <param name="value">The value</param>
+        </member>
+        <member name="M:SqlDataMapper.SqlParameter.Add(System.String,System.Object)">
+            <summary>
+            Add new parameter and value.
+            Existing parameters can't be overwritten.
+            </summary>
+            <param name="key">A unique key</param>
+            <param name="value">The value</param>
+            <returns>Returns true if key/value added</returns>
+        </member>
+        <member name="M:SqlDataMapper.SqlParameter.Get(System.String)">
+            <summary>
+            Get a parameter value.
+            </summary>
+            <param name="key">The unique key</param>
+            <returns>The value</returns>
+        </member>
+        <member name="P:SqlDataMapper.SqlParameter.Parameters">
+            <summary>
+            Get direct access to the dictionary of parameters
+            </summary>
+        </member>
+        <member name="P:SqlDataMapper.SqlParameter.Count">
+            <summary>
+            Get the count of parameters.
+            </summary>
+        </member>
+        <member name="P:SqlDataMapper.SqlParameter.HasParameters">
+            <summary>
+            Return if there are parameters or not.
+            </summary>
+        </member>
+        <member name="P:SqlDataMapper.SqlParameter.Item(System.String)">
+            <summary>
+            Get or set a new parameter and value.
+            Parameters can be overwritten.
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SqlDataMapper.SqlMapper">
+            <summary>
+            The core class for sql mapping. It contains all necessary methods for easy interacting with sql servers.
+            </summary>
+        </member>
+        <member name="M:SqlDataMapper.SqlMapper.#ctor">
+            <summary>
+            Constructor for auto configuration (zeroconf).
+            Searchs for <c>SqlMapper.xml</c> file, otherwise throws an excpetion.
+            </summary>
+        </member>
+        <member name="M:SqlDataMapper.SqlMapper.#ctor(System.String)">
+            <summary>
+            Constructor for auto configuration.
+            </summary>
+            <param name="configXml">The configuration file</param>
+        </member>
+        <member name="M:SqlDataMapper.SqlMapper.#ctor(SqlDataMapper.ISqlProvider)">
+            <summary>
+            Constructor for non auto configurarion. Instantiate your own provider. This instance has no statements and must filled manually or with embeded statements.
+            </summary>
+            <param name="provider">The provider <ref>SqlProvider</ref> or your own <ref>ISqlProvider</ref></param>
+        </member>
+        <member name="M:SqlDataMapper.SqlMapper.#ctor(SqlDataMapper.ISqlProvider,System.String)">
+            <summary>
+            Constructor for non auto configuration. Instantiate your own provider an load your own mappings.
+            </summary>
+            <param name="provider">The provider <ref>SqlProvider</ref> or your own <ref>ISqlProvider</ref></param>
+            <param name="mappingXml">The xml file containing the xml statements</param>
+        </member>
+        <member name="M:SqlDataMapper.SqlMapper.LoadConfiguration(System.String)">
+            <summary>
+            Load the configuration xml file.
+            </summary>
+            <param name="filename">The xml file contains the base configuration</param>
+        </member>
+        <member name="M:SqlDataMapper.SqlMapper.LoadProviders(System.String)">
+            <summary>
+            Load the providers xml file.
+            </summary>
+            <param name="filename">The xml file contains the provider informations</param>
+        </member>
+        <member name="M:SqlDataMapper.SqlMapper.LoadMappings(System.String)">
+            <summary>
+            Load the mappings xml file.
+            </summary>
+            <param name="filename">The xml file contains the statements</param>
+        </member>
+        <member name="M:SqlDataMapper.SqlMapper.ReadConfiguration(System.Xml.Linq.XDocument)">
+            <summary>
+            Read configuration file for auto config.
+            </summary>
+            <param name="doc">A xml document contains the base configuration</param>
+        </member>
+        <member name="M:SqlDataMapper.SqlMapper.ReadProviders(System.Xml.Linq.XDocument)">
+            <summary>
+            Read provider informations.
+            </summary>
+            <param name="doc">A xml document contains the provider informations</param>
+        </member>
+        <member name="M:SqlDataMapper.SqlMapper.ValidateXml(System.Xml.Linq.XDocument,System.String)">
+            <summary>
+            Validate the xml document.
+            Throws XmlSchemaException if fails
+            </summary>
+            <param name="doc">The xml document</param>
+            <param name="xsd">The xsd stream name</param>
+        </member>
+        <member name="M:SqlDataMapper.SqlMapper.GetProvider(System.String)">
+            <summary>
+            Get the provider information for a given id.
+            </summary>
+            <param name="id">The name of the provider.</param>
+            <returns>Returns the provider.</returns>
+        </member>
+        <member name="M:SqlDataMapper.SqlMapper.ConvertToFullPath(System.String)">
+            <summary>
+            Get th full path for the given filename.
+            </summary>
+            <param name="filename">The filename as file, absolute filepath or relative filepath</param>
+            <returns>The full path</returns>
+        </member>
+        <member name="M:SqlDataMapper.SqlMapper.GetStatement(System.String)">
+            <summary>
+            Get the cleaned and parameterized statement for the given id.
+            With <c>::STATEMENT</c>, you can embed a statement instead of an id.
+            </summary>
+            <param name="id">The name of the sql statement or embedded statement.</param>
+            <returns>Returns the cleaned and parameterized statement</returns>
+        </member>
+        <member name="M:SqlDataMapper.SqlMapper.GetStatement``1(System.String,``0)">
+            <summary>
+            Get the cleaned and parameterized statement for the given name.
+            With '::STATEMENT', you can embed a statement instead of an id.
+            </summary>
+            <typeparam name="T">The type of the object.</typeparam>
+            <param name="id">The name of the sql statement or embedded statement.</param>
+            <param name="obj">The object used to set the parameters in the sql.</param>
+            <returns>Returns the cleaned and parameterized statement</returns>
+        </member>
+        <member name="M:SqlDataMapper.SqlMapper.GetStatement(System.String,SqlDataMapper.SqlParameter)">
+            <summary>
+            Get the cleaned and parameterized sql statement for the given name.
+            With <c>::STATEMENT</c>, you can embed a statement instead of an id.
+            </summary>
+            <param name="id">The name of the sql statement or embedded statement.</param>
+            <param name="parameters">Sql parameters.</param>
+            <returns>Returns the cleaned and parameterized statement.</returns>
+        </member>
+        <member name="M:SqlDataMapper.SqlMapper.GetStatementRaw(System.String)">
+            <summary>
+            Get the unparameterized and unmodified raw sql statement for the given name. This statement may work...
+            With <c>::STATEMENT</c>, you can embed a statement instead of an id.
+            </summary>
+            <param name="id">The name of the sql statement or embeded statement.</param>
+            <returns>Returns the raw statement.</returns>
+        </member>
+        <member name="M:SqlDataMapper.SqlMapper.BeginTransaction">
+            <summary>
+            Begins a database transaction.
+            </summary>
+            <remarks>
+            The method opens a connection to the datebase. The connection will closed through <c>CommitTransaction</c> or <c>RollbackTransaction</c>.
+            </remarks>
+        </member>
+        <member name="M:SqlDataMapper.SqlMapper.CommitTransaction">
+            <summary>
+            Commits the database transaction.
+            </summary>
+            <remarks>
+            The connection will closed.
+            </remarks>
+        </member>
+        <member name="M:SqlDataMapper.SqlMapper.RollbackTransaction">
+            <summary>
+            Rolls back a transaction from a pending state.
+            </summary>
+            <remarks>
+            The connection will closed.
+            </remarks>
+        </member>
+        <member name="M:SqlDataMapper.SqlMapper.QueryForObject``1(System.String)">
+            <summary>
+            Executes a sql select statement that returns data to populate a single object instance.
+            With <c>::STATEMENT</c>, you can embed a statement instead of an id.
+            </summary>
+            <typeparam name="T">The type of the object.</typeparam>
+            <param name="id">The name of the sql statement to execute or embeded statement.</param>
+            <returns>The single result object populated with the resultset data.</returns>
+        </member>
+        <member name="M:SqlDataMapper.SqlMapper.QueryForObject``1(System.String,``0)">
+            <summary>
+            Executes a sql select statement that returns data to populate a single object instance.
+            With <c>::STATEMENT</c>, you can embed a statement instead of an id.
+            </summary>
+            <typeparam name="T">The type of the object.</typeparam>
+            <param name="id">The name of the sql statement to execute or embeded statement.</param>
+            <param name="obj">The object used to set the parameters in the sql.</param>
+            <returns>The single result object populated with the resultset data.</returns>
+        </member>
+        <member name="M:SqlDataMapper.SqlMapper.QueryForObject``1(System.String,SqlDataMapper.SqlParameter)">
+            <summary>
+            Executes a sql select statement that returns data to populate a single object instance.
+            With <c>::STATEMENT</c>, you can embed a statement instead of an id.
+            </summary>
+            <typeparam name="T">The type of the object.</typeparam>
+            <param name="id">The name of the sql statement to execute or embedded statement.</param>
+            <param name="parameters">The SqlParameter object used to set the parameters in the sql.</param>
+            <returns>The single result object populated with the resultset data.</returns>
+        </member>
+        <member name="M:SqlDataMapper.SqlMapper.QueryForList``1(System.String)">
+            <summary>
+            Executes a sql select statement that returns data to populate a number of result objects.
+            With <c>::STATEMENT</c>, you can embed a statement instead of an id.
+            </summary>
+            <typeparam name="T">The type of the object.</typeparam>
+            <param name="id">The name of the sql statement to execute or embedded statement.</param>
+            <returns>A List of result objects.</returns>
+        </member>
+        <member name="M:SqlDataMapper.SqlMapper.QueryForList``1(System.String,``0)">
+            <summary>
+            Executes a sql select statement that returns data to populate a number of result objects.
+            With <c>::STATEMENT</c>, you can embed a statement instead of an id.
+            </summary>
+            <typeparam name="T">The type of the object.</typeparam>
+            <param name="id">The name of the sql statement to execute or embedded statement.</param>
+            <param name="obj">The object used to set the parameters in the sql.</param>
+            <returns>A List of result objects.</returns>
+        </member>
+        <member name="M:SqlDataMapper.SqlMapper.QueryForList``1(System.String,SqlDataMapper.SqlParameter)">
+            <summary>
+            Executes a sql select statement that returns data to populate a number of result objects.
+            With <c>::STATEMENT</c>, you can embed a statement instead of an id.
+            </summary>
+            <typeparam name="T">The type of the object.</typeparam>
+            <param name="id">The name of the sql statement to execute or embedded statement.</param>
+            <param name="parameters">The SqlParameter object used to set the parameters in the sql.</param>
+            <returns>A List of result objects.</returns>
+        </member>
+        <member name="M:SqlDataMapper.SqlMapper.QueryForScalar``1(System.String)">
+            <summary>
+            Executes a sql select statement that returns a single value.
+            With <c>::STATEMENT</c>, you can embed a statement instead of an id.
+            </summary>
+            <typeparam name="T">The type of the object.</typeparam>
+            <param name="id">The name of the sql statement to execute or embedded statement.</param>
+            <returns>The single value fom the first column in the first row.</returns>
+        </member>
+        <member name="M:SqlDataMapper.SqlMapper.QueryForScalar``1(System.String,``0)">
+            <summary>
+            Executes a sql select statement that returns a single value.
+            With <c>::STATEMENT</c>, you can embed a statement instead of an id.
+            </summary>
+            <typeparam name="T">The type of the object.</typeparam>
+            <param name="id">The name of the sql statement to execute or embedded statement.</param>
+            <param name="obj">The object used to set the parameters in the sql.</param>
+            <returns>The single value fom the first column in the first row.</returns>
+        </member>
+        <member name="M:SqlDataMapper.SqlMapper.QueryForScalar``1(System.String,SqlDataMapper.SqlParameter)">
+            <summary>
+            Executes a sql select statement that returns a single value.
+            With <c>::STATEMENT</c>, you can embed a statement instead of an id.
+            </summary>
+            <typeparam name="T">The type of the object.</typeparam>
+            <param name="id">The name of the sql statement to execute or embedded statement.</param>
+            <param name="parameters">The SqlParameter object used to set the parameters in the sql.</param>
+            <returns>The single value fom the first column in the first row.</returns>
+        </member>
+        <member name="M:SqlDataMapper.SqlMapper.Insert``1(System.String,``0)">
+            <summary>
+            Executes a sql insert statement.
+            With <c>::STATEMENT</c>, you can embed a statement instead of an id.
+            </summary>
+            <typeparam name="T">The type of the object.</typeparam>
+            <param name="id">The name of the sql statement to execute or embedded statement.</param>
+            <param name="obj">The object used to set the parameters in the sql.</param>
+            <returns>The number of rows effected.</returns>
+        </member>
+        <member name="M:SqlDataMapper.SqlMapper.Insert(System.String,SqlDataMapper.SqlParameter)">
+            <summary>
+            Executes a sql insert statement.
+            With <c>::STATEMENT</c>, you can embed a statement instead of an id.
+            </summary>
+            <param name="id">The name of the sql statement to execute or embedded statement.</param>
+            <param name="parameters">The SqlParameter object used to set the parameters in the sql.</param>
+            <returns>The number of rows effected.</returns>
+        </member>
+        <member name="M:SqlDataMapper.SqlMapper.Update``1(System.String,``0)">
+            <summary>
+            Executes a sql update statement.
+            With <c>::STATEMENT</c>, you can embed a statement instead of an id.
+            </summary>
+            <typeparam name="T">The type of the object.</typeparam>
+            <param name="id">The name of the sql statement to execute or embedded statement.</param>
+            <param name="obj">The object used to set the parameters in the sql.</param>
+            <returns>The number of rows effected.</returns>
+        </member>
+        <member name="M:SqlDataMapper.SqlMapper.Update(System.String,SqlDataMapper.SqlParameter)">
+            <summary>
+            Executes a sql update statement.
+            With <c>::STATEMENT</c>, you can embed a statement instead of an id.
+            </summary>
+            <param name="id">The name of the sql statement to execute or embedded statement.</param>
+            <param name="parameters">The SqlParameter object used to set the parameters in the sql.</param>
+            <returns>The number of rows effected.</returns>
+        </member>
+        <member name="M:SqlDataMapper.SqlMapper.Delete``1(System.String,``0)">
+            <summary>
+            Executes a sql delete statement.
+            With <c>::STATEMENT</c>, you can embed a statement instead of an id.
+            </summary>
+            <typeparam name="T">The type of the object.</typeparam>
+            <param name="id">The name of the sql statement to execute or embedded statement.</param>
+            <param name="obj">The object used to set the parameters in the sql.</param>
+            <returns>The number of rows effected.</returns>
+        </member>
+        <member name="M:SqlDataMapper.SqlMapper.Delete(System.String,SqlDataMapper.SqlParameter)">
+            <summary>
+            Executes a sql delete statement.
+            With <c>::STATEMENT</c>, you can embed a statement instead of an id.
+            </summary>
+            <param name="id">The name of the sql statement to execute or embedded statement.</param>
+            <param name="parameters">The SqlParameter object used to set the parameters in the sql.</param>
+            <returns>The number of rows effected.</returns>
+        </member>
+        <member name="M:SqlDataMapper.SqlMapper.CheckClassType">
+            <summary>
+            TEST - DO NOT TRACK!
+            </summary>
+        </member>
+        <member name="M:SqlDataMapper.SqlMapper.SqlParameters(System.String,SqlDataMapper.SqlParameter)">
+            <summary>
+            Replace sql parameters by SqlParameter.
+            </summary>
+            <param name="query">The cleaned sql statement.</param>
+            <param name="parameters">The SqlParameter object.</param>
+            <returns>Returns a sql-ready statement if all parameters replaced.</returns>
+        </member>
+        <member name="M:SqlDataMapper.SqlMapper.ParameterTypeToSqlType(System.Object)">
+            <summary>
+            Replace the given object to a sql-like object.
+            </summary>
+            <param name="obj">A object of some type</param>
+            <returns>Returns a sql primitive if possible</returns>
+        </member>
+        <member name="M:SqlDataMapper.SqlMapper.Primitive(System.Object)">
+            <summary>
+            Get the primitive of the object.
+            </summary>
+            <param name="obj">The object of some type</param>
+            <returns>Returns a object as a sql primitive</returns>
+        </member>
+        <member name="M:SqlDataMapper.SqlMapper.GetClassname(System.String)">
+            <summary>
+            Get the associated classname for the provided statement.
+            </summary>
+            <param name="id">The id that identifies the statement</param>
+            <returns>Return the full qualified classname for statement</returns>
+        </member>
+        <member name="M:SqlDataMapper.SqlMapper.SqlFormat(System.String)">
+            <summary>
+            Format the loaded sql statement and replace special characters into whitespaces.
+            </summary>
+            <param name="value">string containing the sql statement</param>
+            <returns>returns formated sql statement</returns>
+        </member>
+        <member name="M:SqlDataMapper.SqlMapper.AddStatement(System.String,System.String)">
+            <summary>
+            Add a user defined statement to the statement pool.
+            </summary>
+            <param name="id">The unique identifier for the statement</param>
+            <param name="statement">The object contains the statement informations</param>
+        </member>
+        <member name="M:SqlDataMapper.SqlMapper.AddStatement(System.String,System.String,System.String)">
+            <summary>
+            Add a user defined statement to the statement pool.
+            </summary>
+            <param name="id">The unique identifier for the statement</param>
+            <param name="statement">A string contains the statement</param>
+            <param name="classname">A string contains the classname</param>
+        </member>
+        <member name="M:SqlDataMapper.SqlMapper.AddStatement(System.String,SqlDataMapper.SqlMapper.Statement)">
+            <summary>
+            Add a loaded statement to the statement pool.
+            </summary>
+            <param name="id">The unique identifier for the statement</param>
+            <param name="statement">The object contains the statement informations</param>
+        </member>
+        <member name="M:SqlDataMapper.SqlMapper.AddProvider(System.String,SqlDataMapper.SqlMapper.Provider)">
+            <summary>
+            Add a loaded provider to the provider pool.
+            </summary>
+            <param name="id">The unique identifier for the statement</param>
+            <param name="provider">The object contains the provider informations</param>
+        </member>
+        <member name="M:SqlDataMapper.SqlMapper.LoadSelects(System.Xml.Linq.XDocument)">
+            <summary>
+            Load all select statements out of the given xml file.
+            </summary>
+            <param name="doc">The document that contains the statements</param>
+        </member>
+        <member name="M:SqlDataMapper.SqlMapper.LoadInserts(System.Xml.Linq.XDocument)">
+            <summary>
+            Load all insert statements out of the given xml file.
+            </summary>
+            <param name="doc">The document that contains the statements</param>
+        </member>
+        <member name="M:SqlDataMapper.SqlMapper.LoadUpdates(System.Xml.Linq.XDocument)">
+            <summary>
+            Load all update statements out of the given xml file.
+            </summary>
+            <param name="doc">The document that contains the statements</param>
+        </member>
+        <member name="M:SqlDataMapper.SqlMapper.LoadDeletes(System.Xml.Linq.XDocument)">
+            <summary>
+            Load all delete statements out of the given xml file.
+            </summary>
+            <param name="doc">The document that contains the statements</param>
+        </member>
+        <member name="M:SqlDataMapper.SqlMapper.LoadInclude(System.Xml.Linq.XDocument)">
+            <summary>
+            Load included documents.
+            </summary>
+            <param name="doc">The document that contains the statements</param>
+        </member>
+        <member name="P:SqlDataMapper.SqlMapper.ParameterCheck">
+            <summary>
+            Enable or disable parameter check after replace
+            </summary>
+        </member>
+        <member name="P:SqlDataMapper.SqlMapper.ValidationCheck">
+            <summary>
+            Enable or disable xml validation.
+            Mono 2.6.x has a bug on GetResourceFromStream().
+            This feature is completely disabled at the moment.
+            </summary>
+        </member>
+        <member name="T:SqlDataMapper.SqlObject">
+            <summary>
+            The core class for sql-to-class mapping and class-to-<c>SqlParameter</c> mapping.
+            </summary>
+        </member>
+        <member name="M:SqlDataMapper.SqlObject.GetAs``1(System.Data.Common.DbDataReader)">
+            <summary>
+            Map a data reader object to a class
+            </summary>
+        </member>
+        <member name="M:SqlDataMapper.SqlObject.GetParameters``1(``0)">
+            <summary>
+            Map an object to <c>SqlParameter</c> class
+            </summary>
+        </member>
+        <member name="M:SqlDataMapper.SqlObject.GetDbValue(System.Object)">
+            <summary>
+            Translate DbNull to null
+            </summary>
+        </member>
+        <member name="M:SqlDataMapper.SqlObject.ColumnExists(System.Data.Common.DbDataReader,System.String)">
+            <summary>
+            Check if column exists in database result set
+            </summary>
+        </member>
+        <member name="M:SqlDataMapper.SqlObject.GetPropertyAttribute(System.Reflection.PropertyInfo)">
+            <summary>
+            Get the custom attribute for the property
+            </summary>
+            <returns>Returns the attribute or null</returns>
+        </member>
+        <member name="M:SqlDataMapper.SqlObject.GetObjectAttribute``1">
+            <summary>
+            Get the custom attribute for the class
+            </summary>
+            <typeparam name="T">The class object</typeparam>
+            <returns>Returns the attribute or null</returns>
+        </member>
+        <member name="T:SqlDataMapper.SqlMapperProperty">
+            <summary>
+            Flags for property attributes.
+            </summary>
+        </member>
+        <member name="F:SqlDataMapper.SqlMapperProperty.None">
+            <summary>
+            No function
+            </summary>
+        </member>
+        <member name="F:SqlDataMapper.SqlMapperProperty.Ignored">
+            <summary>
+            Ignore this member
+            </summary>
+        </member>
+        <member name="F:SqlDataMapper.SqlMapperProperty.Required">
+            <summary>
+            This member is required
+            </summary>
+        </member>
+        <member name="F:SqlDataMapper.SqlMapperProperty.NotNull">
+            <summary>
+            This member is required and can't null
+            </summary>
+        </member>
+        <member name="T:SqlDataMapper.SqlMapperAttributes">
+            <summary>
+            Provides an attribute for properties to enhance the core mapper.
+            </summary>
+        </member>
+        <member name="M:SqlDataMapper.SqlMapperAttributes.#ctor(System.String)">
+            <summary>
+            Constructor to set an alias datebase field name
+            </summary>
+            <param name="fieldName">The alias used in result set</param>
+        </member>
+        <member name="M:SqlDataMapper.SqlMapperAttributes.#ctor(SqlDataMapper.SqlMapperProperty)">
+            <summary>
+            Constructor to set a property usage flag
+            </summary>
+            <param name="property">The property flag</param>
+        </member>
+        <member name="M:SqlDataMapper.SqlMapperAttributes.#ctor(System.String,SqlDataMapper.SqlMapperProperty)">
+            <summary>
+            Constructor to set an alias datebase field name and a property usage flag
+            </summary>
+            <param name="fieldName">The alias used in result set</param>
+            <param name="property">The property flag</param>
+        </member>
+        <member name="P:SqlDataMapper.SqlMapperAttributes.FieldName">
+            <summary>
+            Returns null or the new alias for the database field name
+            </summary>
+        </member>
+        <member name="P:SqlDataMapper.SqlMapperAttributes.Property">
+            <summary>
+            Returns the field usage or None
+            </summary>
+        </member>
+        <member name="T:SqlDataMapper.SqlMapperDebugCallback">
+            <summary>
+            Delegate for <c>SqlObject</c> debugging.
+            </summary>
+            <param name="reader"></param>
+        </member>
+        <member name="T:SqlDataMapper.SqlMapperObjectDebug">
+            <summary>
+            Provides an attribute for debugging.
+            </summary>
+        </member>
+        <member name="M:SqlDataMapper.SqlMapperObjectDebug.#ctor(System.Boolean,System.Type,System.String)">
+            <summary>
+            Enable debugging of SqlMapper.
+            The method must: public, static and in an class.
+            <c>The method has the following signature: 'public static void NAME(DbDataReader reader)'</c>
+            </summary>
+            <param name="enable">Enable or disable callback</param>
+            <param name="type">Typeof class contains the callback</param>
+            <param name="method">The Name of the callback method</param>
+        </member>
+        <member name="P:SqlDataMapper.SqlMapperObjectDebug.Enabled">
+            <summary>
+            Get or set enabled debugging
+            </summary>
+        </member>
+        <member name="P:SqlDataMapper.SqlMapperObjectDebug.Callback">
+            <summary>
+            Get or set the callback function.
+            </summary>
+        </member>
+        <member name="T:SqlDataMapper.SqlDataMapperException">
+            <summary>
+            This exception is thrown when an error in the SqlMapper occurs.
+            </summary>
+            <remarks>
+            This is the base exception for all exceptions thrown in the SqlMapper
+            </remarks>
+        </member>
+        <member name="M:SqlDataMapper.SqlDataMapperException.#ctor">
+            <summary>
+            Initializes a new instance og the <see cref="T:SqlDataMapper.SqlDataMapperException" /> class.
+            </summary>
+        </member>
+        <member name="M:SqlDataMapper.SqlDataMapperException.#ctor(System.Exception)">
+            <summary>
+            Initializes a new instance og the <see cref="T:SqlDataMapper.SqlDataMapperException" /> class.
+            </summary>
+        </member>
+        <member name="M:SqlDataMapper.SqlDataMapperException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance og the <see cref="T:SqlDataMapper.SqlDataMapperException" /> class.
+            </summary>
+        </member>
+        <member name="M:SqlDataMapper.SqlDataMapperException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance og the <see cref="T:SqlDataMapper.SqlDataMapperException" /> class.
+            </summary>
+        </member>
+        <member name="M:SqlDataMapper.SqlDataMapperException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance og the <see cref="T:SqlDataMapper.SqlDataMapperException" /> class.
+            </summary>
+        </member>
+    </members>
+</doc>

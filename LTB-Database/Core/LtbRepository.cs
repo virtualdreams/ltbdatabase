@@ -5,19 +5,28 @@ using System.Text;
 
 using SqlDataMapper;
 using System.Diagnostics;
+using System.Web.Mvc;
+using LTB_Database.Core.DataModel;
 
 namespace LTB_Database.Repository
 {
 	public class LtbRepository
-	{	
+	{
+		private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(LtbRepository));
+		
 		private SqlMapper m_Mapper = null;
 		
 		public LtbRepository()
 		{
-			LtbRepositoryConfig conf = LtbRepositoryConfig.Get();
-			
-			SqlProvider provider = new SqlProvider(conf.AssemblyName, conf.ConnectionClass, conf.ConnectionString);
-			m_Mapper = new SqlMapper(provider, conf.MappingFile);	
+			try
+			{
+				m_Mapper = new SqlMapper(GlobalConfig.Get().SqlMapperConfig);
+			}
+			catch(Exception ex)
+			{
+				log.Fatal(ex);
+				throw;
+			}
 		}
 
 		/// <summary>
@@ -45,7 +54,7 @@ namespace LTB_Database.Repository
 			List<string> ret = new List<string>();
 			foreach(var name in result)
 			{
-				ret.Add(name.name);
+				ret.Add(name.label);
 			}
 			return ret;
 		}
@@ -60,7 +69,7 @@ namespace LTB_Database.Repository
 			param.Add("items", items);
 			param.Add("page", (page * items) - items);
 			
-			Debug.WriteLine("Search: " + m_Mapper.GetStatement("searchBook", param));
+			//Debug.WriteLine("Search: " + m_Mapper.GetStatement("searchBook", param));
 
 			List<Book> result = m_Mapper.QueryForList<Book>("searchBook", param);
 
@@ -85,7 +94,7 @@ namespace LTB_Database.Repository
 			SqlParameter param = new SqlParameter();
 			param.Add("term", String.Format("%{0}%", Escape(term)));
 
-			Debug.WriteLine("Count: " + m_Mapper.GetStatement("getBookCountForSearch", param));
+			//Debug.WriteLine("Count: " + m_Mapper.GetStatement("getBookCountForSearch", param));
 			
 			return m_Mapper.QueryForScalar<int>("getBookCountForSearch", param);
 		}
@@ -110,7 +119,7 @@ namespace LTB_Database.Repository
 
 			List<Book> result = m_Mapper.QueryForList<Book>("getBooks", param);
 			
-			Debug.WriteLine(m_Mapper.GetStatement("getBooks", param));
+			//Debug.WriteLine(m_Mapper.GetStatement("getBooks", param));
 
 			return result;
 		}

@@ -1,5 +1,0 @@
-2013-02-23 13:30:29,949 [4548] INFO  LTB_Database.MvcApplication:Application_Start - Starting application
-2013-02-23 13:30:36,189 [696] ERROR LTB_Database.MvcApplication:Application_Error - Der Controller für den Pfad "/favicon.ico" wurde nicht gefunden, oder IController wird von diesem Controller nicht implementiert.: http://localhost:3596/favicon.ico
-2013-02-23 13:30:37,266 [4548] ERROR LTB_Database.MvcApplication:Application_Error - Der Controller für den Pfad "/favicon.ico" wurde nicht gefunden, oder IController wird von diesem Controller nicht implementiert.: http://localhost:3596/favicon.ico
-2013-02-23 13:31:05,737 [696] INFO  LTB_Database.MvcApplication:Application_Start - Starting application
-2013-02-23 13:32:07,877 [696] INFO  LTB_Database.MvcApplication:Application_Start - Starting application

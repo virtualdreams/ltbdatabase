@@ -49,11 +49,12 @@ namespace LTB_Database.Models
 		}
 
 		/// <summary>
-		/// Get current page
+		/// Get or set current page
 		/// </summary>
 		public long PageIndex
 		{
 			get { return (m_PageIndex); }
+			set { m_PageIndex = value; }
 		}
 
 		/// <summary>
@@ -71,6 +72,24 @@ namespace LTB_Database.Models
 		public bool HasPrevPage
 		{
 			get { return (PageIndex > 1); } 
+		}
+		
+		public long SetPageIndexToLimit(long page)
+		{
+			int r = (int)(TotalCount / PageSize);
+			if (page > r && TotalCount != 0)
+			{
+				PageIndex = TotalPages;
+				return TotalPages;
+			}
+
+			if (page < 1)
+			{
+				PageIndex = 1;
+				return 1;
+			}
+			
+			return PageIndex;
 		}
 	}
 }

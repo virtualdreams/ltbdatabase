@@ -1,9 +1,10 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <sqlMap>
 	<select id="liveSearch" class="">
+		<![CDATA[
 		(
 			SELECT DISTINCT 
-				name 
+				name
 			FROM 
 				ltbdb_books 
 			WHERE 
@@ -12,13 +13,14 @@
 		UNION DISTINCT
 		(
 			SELECT DISTINCT 
-				name 
+				name
 			FROM 
 				ltbdb_stories 
 			WHERE 
 				name LIKE #term#
 		) 
 		ORDER BY name
+		]]>
 	</select>
 	<select id="searchBook" class="">
 		SELECT distinct
@@ -141,6 +143,27 @@
 		LIMIT 
 			#items# OFFSET #page#
 	</select>
+	<select id="getAllBooks" class="">
+		SELECT
+			b.bookid as id,
+			b.name as name,
+			b.number as number,
+			b.catid as catid,
+			b.image as image,
+			b.added as added,
+			(
+				select
+					c.name
+				from
+					ltbdb_categories c
+				where
+					c.catid = b.catid
+			) as category
+		FROM
+			ltbdb_books b
+		ORDER BY
+			number ASC
+	</select>
 	<select id="getCategories" class="">
 		SELECT 
 			catid as id, 
@@ -200,7 +223,7 @@
 		from 
 			ltbdb_books b 
 		where 
-			b.bookid = #bookid#
+			b.bookid = #id#
 	</select>
 	<insert id="insertBook" class="">
 		INSERT INTO ltbdb_books 
@@ -217,7 +240,7 @@
 			#number#, 
 			#catid#, 
 			null,
-			#added#
+			now()
 		)
 	</insert>
 	<update id="updateBook" class="">
@@ -228,7 +251,7 @@
 			number = #number#, 
 			catid = #catid# 
 		WHERE 
-			bookid = #id#
+			bookid = #bookid#
 	</update>
 	<delete id="deleteBook" class="">
 		DELETE FROM 
@@ -244,9 +267,29 @@
 		FROM 
 			ltbdb_stories 
 		WHERE 
-			bookid = #bookid#
+			bookid = #id#
 		ORDER BY 
 			storyid ASC
+	</select>
+	<select id="getAllStories" class="">
+		SELECT
+			storyid as id,
+			name as name,
+			bookid as bookid
+		FROM
+			ltbdb_stories
+		ORDER BY
+			storyid ASC
+	</select>
+	<select id="getStory" class="">
+		SELECT
+			storyid as id,
+			name as name,
+			bookid as bookid
+		FROM
+			ltbdb_stories
+		WHERE
+			storyid = #storyid#
 	</select>
 	<insert id="insertStory" class="">
 		INSERT INTO ltbdb_stories 
@@ -264,7 +307,7 @@
 		DELETE FROM 
 			ltbdb_stories 
 		WHERE 
-			bookid = #id#
+			bookid = #bookid#
 	</delete>
 	<insert id="insertCategory" class="">
 		INSERT INTO ltbdb_categories 

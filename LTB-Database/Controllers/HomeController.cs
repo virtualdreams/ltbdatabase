@@ -11,45 +11,39 @@ using LTB_Database.Repository;
 
 using System.IO;
 using System.Diagnostics;
+using LTB_Database.Filters;
+using LTB_Database.Core.DataAccess;
+using LTB_Database.Core.DataModel;
+using LTB_Database.Core;
 
 namespace LTB_Database.Controllers
 {
+    [GlobalExceptionFilter]
     public class HomeController : Controller
     {
 		private static readonly log4net.ILog log = log4net.LogManager.GetLogger (typeof(HomeController));
-		private LtbRepository repo = new LtbRepository();
+		private readonly HomeService _service;
 
 		public HomeController()
 		{
-			
+			_service = new HomeService(new ModelStateWrapper(this.ModelState));
 		}
-		
+
         public ActionResult Index ()
         {
-			var books = repo.GetLatestBooks();
-			var categories = repo.GetCategories();
-
-			var view = new HomeIndexModel { Latest = books, Categories = categories };
-
-			return View(view);
+			return View(_service.Index(6));
         }
 		
 		[HttpGet]
-		public ActionResult Query (string term)
+		public ActionResult Query(string term)
 		{
-			var result = repo.GetLiveSearch(term);
-			return new JsonResult { Data = result, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+			return new JsonResult { Data = _service.AjaxSearch(term), JsonRequestBehavior = JsonRequestBehavior.AllowGet };
 		}
 		
 		[ChildActionOnly]
 		public ActionResult Statistic()
 		{
-			int books = repo.GetBookCount();
-			int stories = repo.GetStoryCount();
-			
-			var view = new StatisticViewModel { Books = books, Stories = stories };
-			
-			return View(view);
+			return View(_service.Statistics());
 		}
     }
 }

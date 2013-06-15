@@ -5,6 +5,7 @@ using System.Web;
 
 using LTB_Database.Models;
 using LTB_Database.Repository;
+using LTB_Database.Core.DataModel;
 
 namespace LTB_Database.ViewModels
 {
@@ -15,7 +16,7 @@ namespace LTB_Database.ViewModels
 			get;
 			set;
 		}
-		public List<Book> Books
+		public Book[] Books
 		{
 			get;
 			set;

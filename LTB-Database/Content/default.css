@@ -307,11 +307,26 @@ select
     margin-bottom: 30px;
 }
 
-#edit-form input[type=file]
+#edit-form input[type=reset]
 {
 	background-color: #EEEEEE;
     color: #6B7B95;
     width: 150px;
+    border: 1px solid #CCCCCC;
+    font-size: 13px;
+    padding-top: 6px;
+    padding-bottom: 4px;
+    padding-left: 6px;
+    padding-right: 6px;
+    border-radius: 5px;
+    margin-bottom: 30px;
+}
+
+#edit-form input[type=file]
+{
+	background-color: #EEEEEE;
+    color: #6B7B95;
+    width: 400px;
     border: 1px solid #CCCCCC;
     font-size: 13px;
     padding-top: 6px;
@@ -529,5 +544,11 @@ table tr td
 .darker-row
 {
 	background-color: #FFFFFF;
+}
+
+.field-validation-error
+{
+	color: #ff0000;
+	margin-right: 20px;
 }
 

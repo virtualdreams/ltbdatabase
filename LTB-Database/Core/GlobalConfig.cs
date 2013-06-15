@@ -8,28 +8,18 @@ namespace System.Web.Mvc
 {
 	public class GlobalConfig
 	{
+		private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(GlobalConfig));
+		
 		private static GlobalConfig m_Instance = null;
 		private static readonly object singletonLock = new object();
 		
-		public string ConnectionString
+		public string Log4Net
 		{
 			get;
 			private set;
 		}
 		
-		public string AssemblyName
-		{
-			get;
-			private set;
-		}
-
-		public string ConnectionClass
-		{
-			get;
-			private set;
-		}
-
-		public string MappingFile
+		public string SqlMapperConfig
 		{
 			get;
 			private set;
@@ -74,26 +64,16 @@ namespace System.Web.Mvc
 		
 		private void ReadConfig()
 		{
-			if(ConfigurationManager.AppSettings["assemblyName"] != null)
+			if (ConfigurationManager.AppSettings["log4net"] != null)
 			{
-				AssemblyName = ConfigurationManager.AppSettings["assemblyName"].ToString();
+				Log4Net = ConfigurationManager.AppSettings["log4net"].ToString();
 			}
-
-			if (ConfigurationManager.AppSettings["connectionClass"] != null)
+			
+			if (ConfigurationManager.AppSettings["sqlMapperConfig"] != null)
 			{
-				ConnectionClass = ConfigurationManager.AppSettings["connectionClass"].ToString();
+				SqlMapperConfig = ConfigurationManager.AppSettings["sqlMapperConfig"].ToString();
 			}
-
-			if (ConfigurationManager.AppSettings["mappingFile"] != null)
-			{
-				MappingFile = ConfigurationManager.AppSettings["mappingFile"].ToString();
-			}
-
-			if (ConfigurationManager.AppSettings["connectionString"] != null)
-			{
-				ConnectionString = ConfigurationManager.AppSettings["connectionString"].ToString();
-			}
-
+			
 			if (ConfigurationManager.AppSettings["allowMimeType"] != null)
 			{
 				AllowMimeType = ConfigurationManager.AppSettings["allowMimeType"].ToString();

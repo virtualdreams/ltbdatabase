@@ -7,9 +7,13 @@ using System.Web.Mvc;
 using LTB_Database.Models;
 using LTB_Database.ViewModels;
 using LTB_Database.Repository;
+using LTB_Database.Filters;
+using LTB_Database.Core.DataModel;
 
 namespace LTB_Database
 {
+	[GlobalExceptionFilter]
+	[GlobalActionFilter]
 	public class CategoriesController : Controller
 	{
 		private LtbRepository repo = new LtbRepository();
@@ -39,39 +43,6 @@ namespace LTB_Database
 
 			return View("Categories", view);
 		}
-		
-		//[HttpGet]
-		//public ActionResult List(int id, int? page)
-		//{
-		//    if (page == null || page == 0)
-		//    {
-		//        page = 1;
-		//    }
-			
-		//    var books = repo.GetBooksFromCategory(50, (int)page, id);
-		//    var pager = new Pager((int)page, 50, repo.GetBookCount());
-			
-		//    var view = new ViewCategoryModel { Books = books, Pager = pager, Query = id.ToString() };
-			
-		//    return View(view);
-		//}
-
-		
-		//[HttpGet]
-		//public ActionResult View(int id, int? page)
-		//{
-		//    if (page == null || page == 0)
-		//    {
-		//        page = 1;
-		//    }
-
-		//    var books = repo.GetBooksFromCategory(12, (int)page, id);
-		//    var pager = new Pager((int)page, 12, repo.GetBookCount());
-
-		//    var view = new ViewCategoryModel { Books = books, Pager = pager, Query = id.ToString() };
-
-		//    return View(view);
-		//}
 		
 		[HttpGet]
 		public  ActionResult Create()
@@ -151,18 +122,6 @@ namespace LTB_Database
 			
 			return View ();
 		}
-		
-		//public ActionResult Image (long id)
-//		{
-//			Database db = new Database ();
-//			db.Open ();
-//			
-//			Image image = db.Image (id);
-//			
-//			db.Close ();
-//			
-//			return new FileContentResult (image.Data, image.Mime);
-		//}
 	}
 }
 
