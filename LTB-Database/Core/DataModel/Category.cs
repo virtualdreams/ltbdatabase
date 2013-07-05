@@ -7,7 +7,7 @@ namespace LTB_Database.Core.DataModel
 {
 	public class Category
 	{
-		public int id { get; set; }
+		public long id { get; set; }
 		public string name { get; set; }
 	}
 }

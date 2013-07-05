@@ -18,7 +18,7 @@ namespace LTB_Database.Core.DataAccess
 		
 		public Story[] List()
 		{
-			return _dal.QueryForList<Story>("getAllStories").ToArray();
+			return _dal.QueryForList<Story>("getStories").ToArray();
 		}
 		
 		public Story Get(int id)
@@ -26,63 +26,30 @@ namespace LTB_Database.Core.DataAccess
 			return _dal.QueryForObject<Story>("getStory", new SqlParameter("storyid", id));
 		}
 
-		public int InsertStory(Story story)
+		public int Insert(Story story)
 		{
 			return _dal.Insert<Story>("insertStory", story);
 		}
 
-		public int UpdateStory(Story story)
+		public int Update(Story story)
 		{
 			return _dal.Update<Story>("updateStory", story);
 		}
 
-		public int DeleteStory(int id)
+		public int Delete(long id)
 		{
-			return _dal.Delete("deleteStory", new SqlParameter("bookid", id));
+			return _dal.Delete("deleteStory", new SqlParameter("storyid", id));
 		}
 		
-		public int DeleteStory(Story story)
+		public int Delete(Story story)
 		{
 			return _dal.Delete<Story>("deleteStory", story);
 		}
 		
+		public int DeleteByBookId(long id)
+		{
+			return _dal.Delete("deleteStories", new SqlParameter("bookid", id));
+		}
 		#endregion
-		
-		//public Story[] GetAllStories()
-		//{
-		//    List<Story> list = _dal.QueryForList<Story>("getAllStories");
-			
-		//    return list.ToArray();
-		//}
-		
-		//public Story[] GetAllStories(int id)
-		//{
-		//    List<Story> list = _dal.QueryForList<Story>("getAllStories");
-			
-		//    return list.Where(x => x.bookid == id).ToArray();
-		//}
-		
-		//public Story GetStory(int id)
-		//{
-		//    Story obj = _dal.QueryForObject<Story>("getStory", new SqlParameter("storyid", id));
-			
-		//    return obj;
-		//}
-		
-		//public int GetCount()
-		//{
-		//    List<Story> list = _dal.QueryForList<Story>("getAllStories");
-			
-		//    return list.Count;
-		//}
-		
-		//public int GetCount(int id)
-		//{
-		//    List<Story> list = _dal.QueryForList<Story>("getAllStories");
-
-		//    return list.Where(x => x.bookid == id).Count();
-		//}
-		
-		
 	}
 }

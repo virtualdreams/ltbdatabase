@@ -7,7 +7,6 @@ using System.Configuration;
 
 using LTB_Database.Models;
 using LTB_Database.ViewModels;
-using LTB_Database.Repository;
 
 using System.IO;
 using System.Diagnostics;
@@ -31,7 +30,12 @@ namespace LTB_Database.Controllers
 
         public ActionResult Index ()
         {
-			return View(_service.Index(6));
+			CategoryViewModel view = new CategoryViewModel
+			{
+				Books = _service.GetLatestBooks(6)
+			};
+			
+			return View(view);
         }
 		
 		[HttpGet]
@@ -43,7 +47,13 @@ namespace LTB_Database.Controllers
 		[ChildActionOnly]
 		public ActionResult Statistic()
 		{
-			return View(_service.Statistics());
+			StatisticViewModel view = new StatisticViewModel
+			{
+				Books = _service.BookCount(),
+				Stories = _service.StoryCount()
+			};
+			
+			return View(view);
 		}
     }
 }

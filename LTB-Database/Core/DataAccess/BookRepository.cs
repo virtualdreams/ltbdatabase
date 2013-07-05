@@ -19,30 +19,30 @@ namespace LTB_Database.Core.DataAccess
 		#region RepositoryPattern
 		public Book[] List()
 		{
-			return _dal.QueryForList<Book>("getAllBooks").ToArray();
+			return _dal.QueryForList<Book>("getBooks").ToArray();
 		}
 		
-		public Book Get(int id)
+		public Book Get(long id)
 		{
 			return _dal.QueryForObject<Book>("getBook", new SqlParameter("id", id));
 		}
 
-		public int InsertBook(Book book)
+		public int Insert(Book book)
 		{
 			return _dal.Insert<Book>("insertBook", book);
 		}
 
-		public int UpdateBook(Book book)
+		public int Update(Book book)
 		{
 			return _dal.Update<Book>("updateBook", book);
 		}
 
-		public int DeleteBook(int id)
+		public int Delete(long id)
 		{
 			return _dal.Delete("deleteBook", new SqlParameter("bookid", id));
 		}
 
-		public int DeleteBook(Book book)
+		public int Delete(Book book)
 		{
 			return _dal.Delete<Book>("deleteBook", book);
 		}
@@ -50,64 +50,16 @@ namespace LTB_Database.Core.DataAccess
 		
 		#region Extended methods
 		
-		public Search[] SearchForTerm(string term)
+		public Search[] LiveSearch(string query)
 		{
-			return _dal.QueryForList<Search>("liveSearch", new SqlParameter("term", String.Format("%{0}%", Helpers.EscapeSpecialCharacters(term)))).ToArray();
+			return _dal.QueryForList<Search>("getLiveSearch", new SqlParameter("term", String.Format("%{0}%", query))).ToArray();
+		}
+
+		public Book[] Search(string query)
+		{
+			return _dal.QueryForList<Book>("getBookSearch", new SqlParameter("term", String.Format("%{0}%", query))).ToArray();
 		}
 		
 		#endregion
-		
-		//public Book[] GetAllBooks()
-		//{
-		//    List<Book> list = _dal.QueryForList<Book>("getAllBooks");
-			
-		//    return list.ToArray();
-		//}
-		
-		//public Book[] GetAllBooks(int skip, int items)
-		//{
-		//    List<Book> list = _dal.QueryForList<Book>("getAllBooks");
-
-		//    return list.Skip(skip).Take(items).ToArray();
-		//}
-
-		//public Book[] GetAllBooks(int category, int skip, int items)
-		//{
-		//    List<Book> list = _dal.QueryForList<Book>("getAllBooks");
-
-		//    return list.Where(x => x.catid == category).Skip(skip).Take(items).ToArray();
-		//}
-		
-		//public Book[] GetLatest(int items)
-		//{
-		//    List<Book> list = _dal.QueryForList<Book>("getAllBooks");
-			
-		//    return list.OrderByDescending(x => x.added).Take(items).ToArray();
-		//}
-		
-		//public int GetCount()
-		//{
-		//    List<Book> list = _dal.QueryForList<Book>("getAllBooks");
-
-		//    return list.Count;
-		//}
-
-		//public int GetCount(int id)
-		//{
-		//    List<Book> list = _dal.QueryForList<Book>("getAllBooks");
-
-		//    return list.Where(x => x.catid == id).Count();
-		//}
-		
-		//public Book GetBook(int id)
-		//{
-		//    Book obj = _dal.QueryForObject<Book>("getBook", new SqlParameter("bookid", id));
-			
-		//    return obj;
-		//}
-		
-		
-		
-		
 	}
 }

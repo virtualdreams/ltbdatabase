@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 
 using LTB_Database.Models;
-using LTB_Database.Repository;
 
 namespace LTB_Database.ViewModels
 {

@@ -7,8 +7,8 @@ namespace LTB_Database.Core.DataModel
 {
 	public class Story
 	{
-		public int id { get; set; }
+		public long id { get; set; }
 		public string name { get; set; }
-		public int bookid { get; set; }
+		public long bookid { get; set; }
 	}
 }

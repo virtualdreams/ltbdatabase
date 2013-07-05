@@ -3,6 +3,9 @@
 	<providers file="./App_Data/providers.xml" />
 	<database provider="mysql" connectionString="Server=server.home.lan;Database=ltbdb;Uid=root;Pwd=root;Pooling=true" />
 	<sqlMaps>
-		<sqlMap file="./App_Data/sql.xml" />
+		<sqlMap file="./App_Data/MySql/general.xml" />
+		<sqlMap file="./App_Data/MySql/book.xml" />
+		<sqlMap file="./App_Data/MySql/category.xml" />
+		<sqlMap file="./App_Data/MySql/story.xml" />
 	</sqlMaps>
 </sqlMapConfig>

@@ -5,4 +5,9 @@
 		assemblyName="MySql.Data" 
 		connectionClass="MySql.Data.MySqlClient.MySqlConnection" 
 	/>
+	<provider 
+		id="sqlite3" 
+		assemblyName="System.Data.SQLite" 
+		connectionClass="System.Data.SQLite.SQLiteConnection" 
+	/>
 </providers>

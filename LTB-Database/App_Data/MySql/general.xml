@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sqlMap>
+	<select id="getLastInsertId" class="no">
+		<![CDATA[
+		select last_insert_id()
+		]]>
+	</select>
+	<select id="getLiveSearch" class="">
+		<![CDATA[
+		(
+			SELECT DISTINCT 
+				name
+			FROM 
+				ltbdb_books 
+			WHERE 
+				name LIKE #term#
+		)
+		UNION DISTINCT
+		(
+			SELECT DISTINCT 
+				name
+			FROM 
+				ltbdb_stories 
+			WHERE 
+				name LIKE #term#
+		) 
+		ORDER BY name
+		]]>
+	</select>
+	<select id="getBookSearch" class="LTB_Database.Core.DataModel.Book">
+		<![CDATA[
+		SELECT distinct
+			b.bookid as id, 
+			b.name as name, 
+			b.number as number,
+			b.catid as catid,
+			b.image as image,
+			b.added as added,
+			(
+				select 
+					c.name 
+				from 
+					ltbdb_categories c 
+				where 
+					c.catid = b.catid
+			) as category 
+		FROM 
+			ltbdb_books b, 
+			ltbdb_stories s 
+		WHERE 
+			b.name LIKE #term#
+			OR
+			(
+				s.name LIKE #term# 
+				AND b.bookid = s.bookid
+			)
+		ORDER BY 
+			b.number ASC
+		]]>
+	</select>
+</sqlMap>

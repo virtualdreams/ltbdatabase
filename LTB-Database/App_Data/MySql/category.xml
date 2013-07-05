@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<sqlMap>
+	<select id="getCategories" class="LTB_Database.Core.DataModel.Category">
+		<![CDATA[
+		SELECT 
+			catid as id, 
+			name as name
+		FROM 
+			ltbdb_categories 
+		ORDER BY name ASC
+		]]>
+	</select>
+	<select id="getCategory" class="LTB_Database.Core.DataModel.Category">
+		<![CDATA[
+		SELECT 
+			catid as id, 
+			name as name
+		FROM 
+			ltbdb_categories 
+		WHERE catid = #catid#
+		]]>
+	</select>
+	<insert id="insertCategory" class="LTB_Database.Core.DataModel.Category">
+		<![CDATA[
+		INSERT INTO ltbdb_categories 
+		(
+			name
+		) 
+		VALUE
+		(
+			#name#
+		)
+		]]>
+	</insert>
+	<update id="updateCategory" class="LTB_Database.Core.DataModel.Category">
+		<![CDATA[
+		UPDATE 
+			ltbdb_categories 
+		SET 
+			name = #name# 
+		WHERE 
+			catid = #id#
+		]]>	
+	</update>
+	<delete id="deleteCategory" class="LTB_Database.Core.DataModel.Category">
+		<![CDATA[
+		DELETE FROM 
+			ltbdb_categories 
+		WHERE 
+			catid = #id#
+		]]>	
+	</delete>
+</sqlMap>

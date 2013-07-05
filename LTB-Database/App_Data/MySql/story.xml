@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<sqlMap>
+	<select id="getStories" class="LTB_Database.Core.DataModel.Story">
+		<![CDATA[
+		SELECT
+			storyid as id,
+			name as name,
+			bookid as bookid
+		FROM
+			ltbdb_stories
+		ORDER BY
+			storyid ASC
+		]]>
+	</select>
+	<select id="getStory" class="LTB_Database.Core.DataModel.Story">
+		<![CDATA[
+		SELECT
+			storyid as id,
+			name as name,
+			bookid as bookid
+		FROM
+			ltbdb_stories
+		WHERE
+			storyid = #storyid#
+		]]>	
+	</select>
+	<insert id="insertStory" class="LTB_Database.Core.DataModel.Story">
+		<![CDATA[
+		INSERT INTO ltbdb_stories 
+		(
+			name, 
+			bookid
+		) 
+		VALUES
+		(
+			#name#,
+			#bookid#
+		)
+		]]>
+	</insert>
+	<update id="updateStory" class="LTB_Database.Core.DataModel.Story">
+		<![CDATA[
+		update
+			ltbdb_stories
+		set
+			name = #name#,
+			bookid = #bookid#
+		where
+			storyid = #storyid#
+		]]>
+	</update>
+	<delete id="deleteStory" class="LTB_Database.Core.DataModel.Story">
+		<![CDATA[
+		delete from
+			ltbdb_stories
+		where
+			storyid = #storyid#
+		]]>
+	</delete>
+	<delete id="deleteStories" class="LTB_Database.Core.DataModel.Story">
+		<![CDATA[
+		DELETE FROM 
+			ltbdb_stories 
+		WHERE 
+			bookid = #bookid#
+		]]>	
+	</delete>
+</sqlMap>

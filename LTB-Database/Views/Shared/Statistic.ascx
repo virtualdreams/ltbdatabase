@@ -1,4 +1,7 @@
-﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<LTB_Database.ViewModels.StatisticViewModel>" %>
+﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<StatisticViewModel>" %>
+<%@ Import Namespace="LTB_Database.Core" %>
+<%@ Import Namespace="LTB_Database.Models" %>
+<%@ Import Namespace="LTB_Database.ViewModels" %>
 
 <div class="content-block">
     <h3>Statistik</h3>

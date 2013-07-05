@@ -5,73 +5,39 @@ using System.Web;
 using System.Web.Mvc;
 using System.Diagnostics;
 
+using LTB_Database.Core;
 using LTB_Database.Models;
 using LTB_Database.ViewModels;
-using LTB_Database.Repository;
 using LTB_Database.Filters;
 
 namespace LTB_Database.Controllers
 {
 	[GlobalExceptionFilter]
-	[GlobalActionFilter]
     public class SearchController : Controller
     {
-		private LtbRepository repo = new LtbRepository();
-	
+		private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(SearchController));
+		private readonly SearchService _service;
+		
 		public SearchController()
 		{
-			
+			_service = new SearchService(new ModelStateWrapper(this.ModelState));
 		}
 		
         [HttpGet]
-        public ActionResult Index(string q, int? page, string layout)
+        public ActionResult Index(string q, long? page, string layout)
         {
-			if(String.IsNullOrEmpty(q))
-				throw new Exception("Die Suchanfrage muss mindestens 3 Buchstaben enthalten.");
+			BookModel[] books = _service.Search(q);
+			Pager pager = new Pager(page ?? 1, 12, books.Count());
+			long newPage = pager.SetPageIndexToLimit(page ?? 1);
 			
-			//basic
-			if (page == null || page == 0)
+			SearchViewModel view = new SearchViewModel
 			{
-				page = 1;
-			}
-
-			int items = 12;
-			bool shelf = true;
-
-			if (!String.IsNullOrEmpty(layout))
-			{
-				if (layout.Equals("shelf"))
-				{
-					items = 12;
-					shelf = true;
-				}
-				if (layout.Equals("list"))
-				{
-					items = 50;
-					shelf = false;
-				}
-			}
-
-			//get data
-			var pager = new Pager((int)page, items, repo.GetBookCountForSearch(q));
-
-			if (page > pager.TotalCount / items && pager.TotalCount != 0)
-			{
-				page = (int)pager.TotalPages;
-				pager = new Pager((int)page, items, pager.TotalCount);
-			}
-
-			if (page < 1)
-			{
-				page = 1;
-				pager = new Pager((int)page, items, pager.TotalCount);
-			}
-
-        	var books = repo.GetSearchBook(q, items, (int)page);
-        	
-        	var view = new SearchIndexModel { Books = books, Query = q, Pager = pager };
-        	
-        	return View(view);
+				Query = q,
+				Books = books.Skip((int)(newPage * 12) - 12).Take(12).ToArray(),
+				Pager = pager
+			};
+			
+			return View(view);
         }
     }
 }

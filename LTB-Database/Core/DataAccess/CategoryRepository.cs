@@ -22,29 +22,29 @@ namespace LTB_Database.Core.DataAccess
 			return _dal.QueryForList<Category>("getCategories").ToArray();
 		}
 		
-		public Category Get(int id)
+		public Category Get(long id)
 		{
 			return _dal.QueryForObject<Category>("getCategory", new SqlParameter("catid", id));
 		}
 
-		public int InsertCategory(Category category)
+		public int Insert(Category category)
 		{
 			return _dal.Insert<Category>("insertCategory", category);
 		}
 
-		public int UpdateCategory(Category category)
+		public int Update(Category category)
 		{
 			return _dal.Update<Category>("updateCategory", category);
 		}
 
-		public int DeleteCategory(Category category)
+		public int Delete(Category category)
 		{
-			return _dal.Delete<Category>("deleteCategorie", category);
+			return _dal.Delete<Category>("deleteCategory", category);
 		}
 
-		public int DeleteCategory(int id)
+		public int Delete(long id)
 		{
-			return _dal.Delete("deleteCategorie", new SqlParameter("catid", id));
+			return _dal.Delete("deleteCategory", new SqlParameter("id", id));
 		}
 		
 		#endregion

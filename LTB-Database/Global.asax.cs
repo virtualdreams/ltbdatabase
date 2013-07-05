@@ -7,6 +7,7 @@ using System.Web.Routing;
 using System.IO;
 
 using LTB_Database.Controllers;
+using LTB_Database.Core;
 
 namespace LTB_Database
 {
@@ -20,10 +21,12 @@ namespace LTB_Database
 			routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 			routes.IgnoreRoute("Scripts/{*pathInfo}");
 			routes.IgnoreRoute("Images/{*pathInfo}");
-			routes.IgnoreRoute("fancybox/{*pathInfo}");
+			//routes.IgnoreRoute("fancybox/{*pathInfo}");
 			routes.IgnoreRoute("{*favicon}", new { favicon = @"(.*/)?favicon.ico(/.*)?" });
 			
 			routes.MapRoute("AutoComplete", "AutoComplete/", new { controller = "Home", action = "Query" });
+			routes.MapRoute("AddStory", "AddStory/", new { controller = "Home", action = "AddStory" });
+			routes.MapRoute("RemStory", "RemStory/", new { controller = "Home", action = "RemoveStory" });
 			
 			routes.MapRoute("Default", "{controller}/{action}/{id}", new { controller = "Home", action = "Index", id = "" });
 		}

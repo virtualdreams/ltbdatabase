@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<sqlMap>
+	<select id="getBooks" class="LTB_Database.Core.DataModel.Book">
+		<![CDATA[
+		SELECT
+			b.bookid as id,
+			b.name as name,
+			b.number as number,
+			b.catid as catid,
+			b.image as image,
+			b.added as added,
+			(
+				select
+					c.name
+				from
+					ltbdb_categories c
+				where
+					c.catid = b.catid
+			) as category
+		FROM
+			ltbdb_books b
+		ORDER BY
+			number ASC
+		]]>
+	</select>
+	<select id="getBook" class="LTB_Database.Core.DataModel.Book">
+		<![CDATA[
+		select 
+			b.bookid as id, 
+			b.name as name, 
+			b.number as number, 
+			b.catid as catid, 
+			b.image as image, 
+			b.added as added, 
+			(
+				select 
+					c.name 
+				from 
+					ltbdb_categories c 
+				where 
+					c.catid = b.catid
+			) as category 
+		from 
+			ltbdb_books b 
+		where 
+			b.bookid = #id#
+		]]>
+	</select>
+	<insert id="insertBook" class="LTB_Database.Core.DataModel.Book">
+		<![CDATA[
+		INSERT INTO ltbdb_books 
+		(
+			name, 
+			number, 
+			catid, 
+			image,
+			added
+		) 
+		VALUES
+		(
+			#name#, 
+			#number#, 
+			#catid#, 
+			null,
+			now()
+		)
+		]]>
+	</insert>
+	<update id="updateBook" class="LTB_Database.Core.DataModel.Book">
+		<![CDATA[
+		UPDATE 
+			ltbdb_books 
+		SET 
+			name = #name#, 
+			number = #number#, 
+			catid = #catid# 
+		WHERE 
+			bookid = #id#
+		]]>
+	</update>
+	<delete id="deleteBook" class="LTB_Database.Core.DataModel.Book">
+		<![CDATA[
+		DELETE FROM 
+			ltbdb_books 
+		WHERE 
+			bookid = #id#;
+		]]>
+	</delete>
+</sqlMap>

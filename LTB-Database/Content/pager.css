@@ -1,0 +1,40 @@
+.pager
+{
+	margin-left: 25px;
+	margin-right: 25px;
+}
+
+.pager-list
+{
+	padding: 0;
+    margin-bottom: 15px;
+    list-style: none none outside;
+    overflow: hidden;
+}
+
+.pager-item
+{
+	float: left;
+    position: relative; 
+    list-style-type: none;
+    border: 1px solid #DDDDDD;
+    display: block;
+    margin: 3px 4px;
+    font-size: 9pt;
+}
+
+.pager-item a
+{
+	padding: 3px 4px;
+	display: inline-block;
+	min-width: 15px;
+	text-align: center;
+	font-weight: bold;
+}
+
+.pager-item:hover,
+.pager-item:hover a
+{
+	background-color: #6B7B95;
+	color: #F4F5F5;
+}
