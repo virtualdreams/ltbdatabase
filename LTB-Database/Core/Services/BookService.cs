@@ -48,8 +48,8 @@ namespace LTB_Database.Core
 				Name = book.name,
 				Number = book.number,
 				CategoryId = book.catid,
-				Added = book.added,
 				Image = book.image,
+				Added = book.added,
 				Stories = storyNames.ToArray()
 			};
 

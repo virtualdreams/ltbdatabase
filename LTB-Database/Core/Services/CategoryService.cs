@@ -39,7 +39,9 @@ namespace LTB_Database.Core
 					Id = book.id,
 					Name = book.name,
 					Number = book.number,
-					CategoryId = book.catid
+					CategoryId = book.catid,
+					Image = book.image,
+					Added = book.added
 				});
 			}
 			
