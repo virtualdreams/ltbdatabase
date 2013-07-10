@@ -39,7 +39,7 @@ namespace LTB_Database.Core.DataAccess
 
 		public int Delete(long id)
 		{
-			return _dal.Delete("deleteBook", new SqlParameter("bookid", id));
+			return _dal.Delete("deleteBook", new SqlParameter("id", id));
 		}
 
 		public int Delete(Book book)
