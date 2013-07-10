@@ -78,6 +78,16 @@
 			bookid = #id#
 		]]>
 	</update>
+	<update id="updateBookSetImage" class="LTB_Database.Core.DataModel.Book">
+		<![CDATA[
+		update
+			ltbdb_books
+		set
+			image = #image#
+		where
+			bookid = #id#
+		]]>
+	</update>
 	<delete id="deleteBook" class="LTB_Database.Core.DataModel.Book">
 		<![CDATA[
 		DELETE FROM 

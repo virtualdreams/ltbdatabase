@@ -120,9 +120,7 @@
     </None>
     <Content Include="Content\default.css" />
     <Content Include="Content\gradient.png" />
-    <Content Include="Content\no-image.jpeg" />
     <Content Include="Global.asax" />
-    <Content Include="Scripts\jquery-1.6.1.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.13.custom.min.js" />
     <Content Include="Views\Error\Http404.aspx" />
     <Content Include="Views\Error\Http500.aspx" />
@@ -196,9 +194,11 @@
     <Content Include="Content\error.png" />
     <Content Include="Content\glass_dark.png" />
     <Content Include="Content\glass_light.png" />
+    <Content Include="Content\no-image.png" />
     <Content Include="Content\pager.css" />
     <Content Include="Images\.stub" />
     <Content Include="Logs\.stub" />
+    <Content Include="Scripts\jquery-1.7.2.min.js" />
     <Content Include="Views\Book\Delete.aspx" />
     <Content Include="Views\Book\Edit.aspx" />
     <Content Include="Views\Book\View.aspx" />
@@ -208,7 +208,6 @@
     <Content Include="Views\Category\View.aspx" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\Sqlite3\" />
     <Folder Include="ViewModels\New\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
@@ -237,7 +236,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties BuildVersion_BuildVersioningStyle="None.None.Increment.None" BuildVersion_UpdateFileVersion="True" />
+      <UserProperties BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.None" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

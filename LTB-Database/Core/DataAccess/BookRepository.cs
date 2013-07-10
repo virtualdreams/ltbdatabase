@@ -50,6 +50,14 @@ namespace LTB_Database.Core.DataAccess
 		
 		#region Extended methods
 		
+		public int SetImage(long id, string image)
+		{
+			SqlParameter param = new SqlParameter("id", id);
+			param.Add("image", image);
+			
+			return _dal.Update("updateBookSetImage", param);
+		}
+		
 		public Search[] LiveSearch(string query)
 		{
 			return _dal.QueryForList<Search>("getLiveSearch", new SqlParameter("term", String.Format("%{0}%", query))).ToArray();

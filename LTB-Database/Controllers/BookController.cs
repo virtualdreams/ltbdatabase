@@ -85,6 +85,14 @@ namespace LTB_Database
 
 			return View(view);
 		}
+		
+		[HttpPost]
+		public ActionResult RemoveImage(long? id)
+		{
+			_service.RemoveImage(id ?? 0);
+			
+			return new JsonResult { Data = new { success = "true", error = "" }, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+		}
 
 		[HttpGet]
 		public ActionResult Delete(long? id)

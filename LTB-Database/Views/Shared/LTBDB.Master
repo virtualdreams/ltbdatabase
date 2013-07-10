@@ -50,13 +50,27 @@
 
     		$('.insStory').live('click', function() {
     			var o = $(this).parents('p');
-    			$('<p><input class="inputStory" type="text" name="stories" value="" placeholder="Geschichte" /> <a href="#" class="remStory" style="margin-left: 10px;"><img src="/Content/cross.png" alt="Entfernen" title="Entfernen" /></a> <a href="#" class="insStory"><img src="/Content/add.png" alt="Einfügen" title="Einfügen" /></a></p>').insertAfter(o);
+    			$('<p><input class="inputStory" type="text" name="stories" value="" placeholder="Geschichte" /> <a href="#" class="remStory" style="margin-left: 10px;"><img src="/Content/cross.png" alt="Entfernen" title="Entfernen" /></a> <a href="#" class="insStory"><img src="/Content/add.png" alt="Einfügen" title="Einfügen" /></a></p>').insertBefore(o);
     			return false;
     		});
 
     		$('.remStory').live('click', function() {
     			$(this).parents('p').remove();
     			return false;
+    		});
+
+    		$('.delimg').live('click', function() {
+    			data = { 'id': $('#id').val() };
+
+    			$.post('/book/removeimage/', data, function(data) {
+    				var ret = data['success'];
+    				if (ret != undefined) {
+    					if (ret === "true")
+    						$('.imgdisp').remove();
+    				}
+    			}).fail(function() {
+    				alert("Kann Bild nicht löschen.");
+    			});
     		});
     	});
     </script>

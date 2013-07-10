@@ -27,13 +27,13 @@
     			<% } %>
     			</ul>
         	</div>
-        	<div style="float: right; height: 200px; border: 1px solid #EEEEEE; border-radius: 5px; margin-right: 26px; background-color: #EEE;">
+        	<% if(!String.IsNullOrEmpty(Model.Book.Image)) { %>
+        	<div style="float: right; height: auto; width: 200px; border: 1px solid #EEEEEE; border-radius: 5px; margin-right: 26px; background-color: #EEE;">
         		<a id="fancybox" title="Nr. <%= Model.Book.Number %> - <%= Model.Book.Name %>" href="<%= Url.Content(GlobalConfig.Get().ImagePath + Model.Book.Image) %>">
-        		<% if(!String.IsNullOrEmpty(Model.Book.Image)) { %>		
-        			<img src="<%= Url.Content(GlobalConfig.Get().ImagePath + Model.Book.Image) %>" height="200" alt="<%= Model.Book.Name %>" style="border: none; display: block; margin-left: auto; margin-right: auto;" />
-        		<% } %>
+        			<img src="<%= Url.Content(GlobalConfig.Get().ImagePath + Model.Book.Image) %>" title="<%= Model.Book.Name %>" alt="<%= Model.Book.Name %>" style="border: none; margin-left: auto; margin-right: auto; height: auto; width: 200px;" />
         		</a>
         	</div>
+        	<% } %>
         	<div style="clear: both;"></div>
         </div>
     </div>

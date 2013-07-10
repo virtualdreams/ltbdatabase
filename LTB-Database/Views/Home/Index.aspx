@@ -21,7 +21,9 @@
 	                    <div>
 	                        <div class="book-item-image">
 	                            <% if(!String.IsNullOrEmpty(book.Image)) { %>
-	                            <img src="<%= Url.Content(GlobalConfig.Get().ImagePath + book.Image) %>" height="120" alt="<%= book.Name %>" style="border: none; display: block; margin-left: auto; margin-right: auto;" />
+	                            <img src="<%= Url.Content(GlobalConfig.Get().ImagePath + book.Image) %>" alt="<%= book.Name %>" style="border: none; display: block; margin-left: auto; margin-right: auto; height: 120px;" />
+								<% } else { %>
+								<img src="/Content/no-image.png" alt="<%= book.Name %>" style="border: none; display: block; margin-left: auto; margin-right: auto; height: 120px;" />
 								<% } %>
 	                        </div>
 	                    </div>

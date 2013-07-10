@@ -4,3 +4,4 @@ bin/
 *.csproj.user
 Deploy/
 *.log
+/LTB-Database/Images/*.png

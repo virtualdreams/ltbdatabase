@@ -510,67 +510,14 @@ dl dd
 	margin-bottom: 30px;
 }
 
-
-
-
-
-table
+.delimg
 {
-	margin: 0;
-	padding: 0;
-	margin-left: 26px;
-	margin-right: 25px;
-	border: 0 none;
+	display: none;
 }
 
-table
+.imgdisp:hover .delimg
 {
-	border: 1px solid #dddddd;
-	border-radius: 5px;
-}
-
-table thead tr
-{
-	background-color: #eeeeee;
-}
-
-table tr
-{
-	border: 0 none;
-}
-
-table tbody tr:hover
-{
-	background-color: #DDDDDD;
-}
-
-table tr th
-{
-	padding: 5px;
-	text-align: left;
-	border: 0 none;
-}
-
-table tr td
-{
-	padding: 5px;
-	text-align: left;
-	border: 0 none;
-}
-
-.left-column
-{
-	width: 100px;
-}
-
-.right-column
-{
-	width: 561px;
-}
-
-.darker-row
-{
-	background-color: #FFFFFF;
+	display: block;
 }
 
 .field-validation-error

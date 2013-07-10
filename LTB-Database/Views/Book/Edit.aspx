@@ -61,18 +61,21 @@
 	<div class="content-block">
 		<h3>Cover</h3>
 		<div class="indent">
-			<div style="height: auto; width: 200px; border: 1px solid #EEEEEE; border-radius: 5px; margin-right: 26px; background-color: #EEE;">
-    			<% if(!String.IsNullOrEmpty(Model.Book.Image)) { %>		
-        			<img src="<%= Url.Content(GlobalConfig.Get().ImagePath + Model.Book.Image) %>" height="200" alt="<%= Model.Book.Name %>" style="border: none; display: block; margin-left: auto; margin-right: auto;" />
-        		<% } %>
+			<% if(!String.IsNullOrEmpty(Model.Book.Image)) { %>		
+			<div class="imgdisp" style="height: auto; width: 200px; border: 1px solid #EEEEEE; border-radius: 5px; margin-right: 26px; background-color: #EEE; position: relative;">
+        		<a id="fancybox" title="Nr. <%= Model.Book.Number %> - <%= Model.Book.Name %>" href="<%= Url.Content(GlobalConfig.Get().ImagePath + Model.Book.Image) %>">
+        			<img src="<%= Url.Content(GlobalConfig.Get().ImagePath + Model.Book.Image) %>" title="<%= Model.Book.Name %>" alt="<%= Model.Book.Name %>" style="border: none; display: block; margin-left: auto; margin-right: auto; height: auto; width: 200px;" />
+    			</a>
+    			<img class="delimg" src="/Content/cross.png" alt="Löschen" title="Löschen" style="position: absolute; top: 10px; left: 174px;" />
     		</div>
+    		<% } %>
     		<label for="image">Bild</label><br />
 			<input type="file" name="imagefile" id="image" />
     	</div>
     </div>
     <div class="content-block">
 		<div class="indent">
-			<input type="hidden" name="id" value="<%= Model.Book.Id %>" />
+			<input type="hidden" id="id" name="id" value="<%= Model.Book.Id %>" />
 			<input type="submit" name="submit" value="Speichern" />
 			<input type="reset" name="reset" value="Zurücksetzen" />
 		</div>

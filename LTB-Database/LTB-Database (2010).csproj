@@ -103,8 +103,6 @@
     </Compile>
     <Compile Include="Core\Helpers\HtmlPager.cs" />
     <Compile Include="Core\Services\CategoryService.cs" />
-    <Compile Include="Core\Filters\GlobalActionFilter.cs" />
-    <Compile Include="Core\Filters\GlobalAuthFilter.cs" />
     <Compile Include="Core\Filters\GlobalExceptionFilter.cs" />
     <Compile Include="Core\Services\SearchService.cs" />
     <Compile Include="Global.asax.cs">
@@ -143,14 +141,13 @@
     <Content Include="Content\glass_dark.png" />
     <Content Include="Content\glass_light.png" />
     <Content Include="Content\gradient.png" />
+    <Content Include="Content\no-image.png" />
     <Content Include="Content\pager.css" />
-    <Content Include="Content\no-image.jpeg" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\jquery-1.7.2.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.13.custom.min.js" />
     <Content Include="Views\Book\Delete.aspx" />
     <Content Include="Views\Book\Edit.aspx" />
-    <Content Include="Views\Book\Index.aspx" />
     <Content Include="Views\Book\View.aspx" />
     <Content Include="Views\Category\Delete.aspx" />
     <Content Include="Views\Category\Edit.aspx" />
@@ -208,7 +205,6 @@
     <Content Include="Scripts\fancybox\jquery.fancybox-1.3.4.css" />
     <Content Include="Scripts\fancybox\jquery.fancybox-1.3.4.pack.js" />
     <Content Include="Views\Category\View.aspx" />
-    <Content Include="Views\Book\List.aspx" />
     <Content Include="Views\Shared\Categories.ascx" />
     <Content Include="Views\Shared\Error.aspx" />
     <Content Include="Views\Shared\ErrorI.ascx" />
@@ -247,7 +243,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.None" />
+      <UserProperties BuildVersion_BuildVersioningStyle="None.None.Increment.None" BuildVersion_UpdateFileVersion="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>
