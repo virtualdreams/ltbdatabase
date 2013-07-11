@@ -199,6 +199,7 @@
     <Content Include="Images\.stub" />
     <Content Include="Logs\.stub" />
     <Content Include="Scripts\jquery-1.7.2.min.js" />
+    <Content Include="Scripts\ltbdatabase.js" />
     <Content Include="Views\Book\Delete.aspx" />
     <Content Include="Views\Book\Edit.aspx" />
     <Content Include="Views\Book\View.aspx" />
@@ -236,7 +237,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.None" />
+      <UserProperties BuildVersion_IncrementBeforeBuild="False" BuildVersion_BuildVersioningStyle="None.None.Increment.None" BuildVersion_UpdateFileVersion="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

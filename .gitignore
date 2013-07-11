@@ -5,3 +5,4 @@ bin/
 Deploy/
 *.log
 /LTB-Database/Images/*.png
+/Log/ltbdb.log.*

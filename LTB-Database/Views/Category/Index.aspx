@@ -19,15 +19,13 @@
 	            <li class="book-item">
 	                <a href="<%= Url.Action("view", "book", new { id = book.Id }) %>">
 	                    <span class="book-item-header">Nr. <%= book.Number %></span>
-	                    <div>
-	                        <div class="book-item-image">
-	                            <% if(!String.IsNullOrEmpty(book.Image)) { %>
-	                            <img src="<%= Url.Content(GlobalConfig.Get().ImagePath + book.Image) %>" alt="<%= book.Name %>" style="border: none; display: block; margin-left: auto; margin-right: auto; width: auto; height: 120px;" />
-								<% } else { %>
-								<img src="/Content/no-image.png" alt="<%= book.Name %>" style="border: none; display: block; margin-left: auto; margin-right: auto; height: 120px;" />
-								<% } %>
-	                        </div>
-	                    </div>
+                        <div class="book-item-image">
+                            <% if(!String.IsNullOrEmpty(book.Image)) { %>
+                            <img src="<%= Url.Content(GlobalConfig.Get().ImagePath + book.Image) %>" alt="<%= book.Name %>" style="border: none; display: block; margin-left: auto; margin-right: auto; width: auto; height: 120px;" />
+							<% } else { %>
+							<img src="/Content/no-image.png" alt="<%= book.Name %>" style="border: none; display: block; margin-left: auto; margin-right: auto; height: 120px;" />
+							<% } %>
+                        </div>
 	                    <span class="book-item-footer"><%= book.Name %></span>
 	                </a>
 	            </li>

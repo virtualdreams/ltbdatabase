@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LTB-Database", "LTB-Database\LTB-Database (2010).csproj", "{D309D266-E265-4743-B73C-E0FEDCD4B663}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LTB-Database (2010)", "LTB-Database\LTB-Database (2010).csproj", "{D309D266-E265-4743-B73C-E0FEDCD4B663}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -16,5 +16,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		BuildVersion_IncrementBeforeBuild = False
 	EndGlobalSection
 EndGlobal

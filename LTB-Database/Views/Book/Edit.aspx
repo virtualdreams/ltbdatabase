@@ -60,9 +60,17 @@
 	</div>
 	<div class="content-block">
 		<h3>Cover</h3>
+		<noscript>
+			<div class="warning">
+				Bitte aktiviere JavaScript in deinem Browser, um das Bild löschen zu können.
+			</div>
+		</noscript>
+		<div id="message-box" style="display: none;">
+			<p><b>Das Bild konnte aufgrund eines Fehlers nicht gelöscht werden.</b></p>
+		</div>
 		<div class="indent">
 			<% if(!String.IsNullOrEmpty(Model.Book.Image)) { %>		
-			<div class="imgdisp" style="height: auto; width: 200px; border: 1px solid #EEEEEE; border-radius: 5px; margin-right: 26px; background-color: #EEE; position: relative;">
+			<div class="imgdisp" style="height: auto; width: 200px; border: 1px solid #EEEEEE; border-radius: 5px; margin-right: 26px; background-color: #EEE; position: relative; margin-bottom: 26px;">
         		<a id="fancybox" title="Nr. <%= Model.Book.Number %> - <%= Model.Book.Name %>" href="<%= Url.Content(GlobalConfig.Get().ImagePath + Model.Book.Image) %>">
         			<img src="<%= Url.Content(GlobalConfig.Get().ImagePath + Model.Book.Image) %>" title="<%= Model.Book.Name %>" alt="<%= Model.Book.Name %>" style="border: none; display: block; margin-left: auto; margin-right: auto; height: auto; width: 200px;" />
     			</a>
