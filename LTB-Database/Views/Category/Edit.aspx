@@ -32,6 +32,7 @@
 		<div class="indent">
 			<input type="hidden" name="id" value="<%= Model.Category.Id %>" />
 			<input type="submit" name="submit" value="Speichern" />
+			<input type="reset" name="reset" value="Zurücksetzen" />
 		</div>
 	</div>
 	<% } %>

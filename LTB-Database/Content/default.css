@@ -266,10 +266,14 @@ select:focus
 
 #del-form input[type=submit]
 {
-	background-color: #EEEEEE;
-    color: #6B7B95;
+	background-color: #D27171;
+	background-image: linear-gradient(to bottom, #eb7e7e, #b76262);
+	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
+    font-weight: bold;
+    cursor: pointer;
+    color: #ffffff;
     width: 150px;
-    border: 1px solid #CC0000;
+    border: 1px solid #CCCCCC;
     font-size: 13px;
     padding-top: 6px;
     padding-bottom: 4px;
@@ -277,6 +281,12 @@ select:focus
     padding-right: 6px;
     border-radius: 5px;
     margin-bottom: 30px;
+}
+
+#del-form input[type=submit]:hover
+{
+	background-color: #b76262;
+	background-image: none;
 }
 
 #edit-form
@@ -304,8 +314,12 @@ select:focus
 
 #edit-form input[type=submit]
 {
-	background-color: #EEEEEE;
-    color: #6B7B95;
+	background-color: #78BA91;
+	background-image: linear-gradient(to bottom, #89d4a5, #67a07d);
+	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
+    font-weight: bold;
+    cursor: pointer;
+    color: #ffffff;
     width: 150px;
     border: 1px solid #CCCCCC;
     font-size: 13px;
@@ -317,12 +331,22 @@ select:focus
     margin-bottom: 30px;
 }
 
+#edit-form input[type=submit]:hover
+{
+	background-color: #67a07d;
+	background-image: none;
+}
+
 #edit-form input[type=reset]
 {
-	background-color: #EEEEEE;
-    color: #6B7B95;
+	background-color: #D27171;
+	background-image: linear-gradient(to bottom, #eb7e7e, #b76262);
+	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
+    font-weight: bold;
+    cursor: pointer;
+    color: #ffffff;
     width: 150px;
-    border: 1px solid #CCCCCC;
+	border: 1px solid #CCCCCC;
     font-size: 13px;
     padding-top: 6px;
     padding-bottom: 4px;
@@ -330,6 +354,12 @@ select:focus
     padding-right: 6px;
     border-radius: 5px;
     margin-bottom: 30px;
+}
+
+#edit-form input[type=reset]:hover
+{
+	background-color: #b76262;
+	background-image: none;
 }
 
 #edit-form input[type=file]

@@ -4,5 +4,6 @@ bin/
 *.csproj.user
 Deploy/
 *.log
+ltbdb.log
+ltbdb.log.*
 /LTB-Database/Images/*.png
-/Log/ltbdb.log.*
