@@ -47,61 +47,59 @@ namespace LTB_Database
 
 		//public void Session_Start(object sender, EventArgs e)
 		//{
-		//    log.Info("Starting session width id: " + Session.SessionID);
+		//	log.InfoFormat("Starting session with id '{0}'", Session.SessionID);
+		//}
+		
+		//public void Session_End(object sender, EventArgs e)
+		//{
+		//	log.InfoFormat("End session with id '{0}'", Session.SessionID);
 		//}
 
 		protected void Application_Error(object sender, EventArgs e)
 		{
-		//    Exception exception = Server.GetLastError();
+			Exception exception = Server.GetLastError();
+			HttpException httpException = exception as HttpException;
+			
+			log.Fatal(exception);
 
-		//    //if (exception.Message == "Datei ist nicht vorhanden." || exception.Message == "File does not exist.")
-		//    //{
-		//    //    //string text = string.Format("{0} {1}", ex.Message, HttpContext.Current.Request.Url.ToString());
-		//    //    log.DebugFormat("{0}: {1}", exception.Message, HttpContext.Current.Request.Url.ToString());
-		//    //    return;
-		//    //}
-
-		//    Response.Clear();
-		//    HttpException httpException = exception as HttpException;
-
-		//    RouteData routeData = new RouteData();
-		//    routeData.Values.Add("controller", "Error");
-
-		//    if (httpException == null)
-		//    {
-		//        routeData.Values.Add("action", "Index");
-		//        log.Error(exception);
-		//    }
-		//    else
-		//    {
-		//        log.ErrorFormat("Application exception; HTTP-Code: {0}", httpException.GetHttpCode());
-		//        log.DebugFormat("HtmlErrorMessage: \"{0}\"; Message: \"{1}\"", httpException.GetHtmlErrorMessage(), httpException.Message);
-		//        switch (httpException.GetHttpCode())
-		//        {
-		//            case 404:
-		//                log.ErrorFormat("{0}: {1}", httpException.Message, HttpContext.Current.Request.Url.ToString());
-		//                routeData.Values.Add("action", "Http404");
-		//                break;
-
-		//            case 500:
-		//                log.Fatal(HttpContext.Current.Request.Url.ToString(), httpException);
-		//                routeData.Values.Add("action", "Http500");
-		//                break;
-
-		//            default:
-		//                log.Fatal(HttpContext.Current.Request.Url.ToString(), httpException);
-		//                routeData.Values.Add("action", "Index");
-		//                break;
-		//        }
-		//    }
-
-		//    //routeData.Values.Add("ex", exception);
-
-		//    Server.ClearError();
-		//    //Response.TrySkipIisCustomErrors = true;
-
-		//    IController errorController = new ErrorController();
-		//    errorController.Execute(new RequestContext(new HttpContextWrapper(Context), routeData));
+            if (log.IsDebugEnabled)
+            {
+                MvcApplication app = sender as MvcApplication;
+                log.DebugFormat("Request path '{0}'", app.Request.Path);
+            }
+			
+			Response.Clear();
+			Server.ClearError();
+			
+			RouteData routeData = new RouteData();
+			routeData.Values.Add("controller", "Error");
+			routeData.Values.Add("action", "Index");
+			routeData.Values.Add("exception", exception);
+			
+			Response.StatusCode = 500;
+			
+			if(httpException != null)
+			{
+				Response.StatusCode = httpException.GetHttpCode();
+				switch(Response.StatusCode)
+				{
+					case 403:
+						routeData.Values["action"] = "Http403";
+                        Response.StatusCode = 403;
+						break;
+						
+					case 404:
+						routeData.Values["action"] = "Http404";
+                        Response.StatusCode = 404;
+						break;
+				}
+			}
+			
+			Response.TrySkipIisCustomErrors = true;
+			IController errorController = new ErrorController();
+			HttpContextWrapper wrapper = new HttpContextWrapper(Context);
+			RequestContext rc = new RequestContext(wrapper, routeData);
+			errorController.Execute(rc);
 		}
 
 		/// <summary>
