@@ -1,4 +1,4 @@
-LTB-Datenbank
+ï»¿LTB-Datenbank
 =============
 
-Webinterface für das Verwalten von Lustigen Taschenbüchern und deren Ablegern.
+Webinterface fÃ¼r das Verwalten von Lustigen TaschenbÃ¼chern und deren Ablegern.
